@@ -12,8 +12,8 @@ public class waypoint : MonoBehaviour {
 
     private int indexAtual = -1;
 
-    private waypoint waypointAnterior;
-    private waypoint waypointPosterior;
+    internal waypoint waypointAnterior;
+    internal waypoint waypointPosterior;
 
 	void Start ()
     {
