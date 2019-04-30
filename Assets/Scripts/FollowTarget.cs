@@ -7,7 +7,8 @@ public class FollowTarget : MonoBehaviour {
 
     [Header("Target")]
     public Transform target;
-    public string tagetTag;
+    public string targetTag;
+    public bool buscarMaisProximo;
 
     [Header("Movimento")]
     public float velMovimento = 1.0f;
@@ -23,9 +24,38 @@ public class FollowTarget : MonoBehaviour {
 	
 	void Update ()
     {
+        ProcurarTerget();
         Movimentar();
         Rotacionar();
 	}
+
+    private void ProcurarTerget()
+    {
+        //condições de quabre de método
+        if (targetTag == "" || (!buscarMaisProximo && target == null))
+        {
+            return;
+        }
+
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag);
+
+        Transform possivelTarget = null;
+
+        foreach (GameObject checarTarget in targets)
+        {
+            float checarDis = Vector3.Distance(checarTarget.transform.position, transform.position);
+            if (possivelTarget == null || (checarDis < Vector3.Distance(possivelTarget.transform.position, transform.position)))
+            {
+                possivelTarget = checarTarget.transform;
+            }
+        }
+        if (possivelTarget != null)
+        {
+            target = possivelTarget;
+        }
+
+
+    }
 
     private void Movimentar()
     {
