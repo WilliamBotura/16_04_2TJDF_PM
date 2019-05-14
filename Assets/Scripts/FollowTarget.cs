@@ -19,7 +19,7 @@ public class FollowTarget : MonoBehaviour {
 
 	void Start ()
     {
-		
+        //
 	}
 	
 	void Update ()
@@ -53,8 +53,6 @@ public class FollowTarget : MonoBehaviour {
         {
             target = possivelTarget;
         }
-
-
     }
 
     private void Movimentar()
